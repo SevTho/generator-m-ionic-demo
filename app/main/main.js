@@ -1,10 +1,18 @@
 'use strict';
 angular.module('main', [
   'ionic',
+  'ionic.cloud',
   'ngCordova',
   'ui.router',
   // TODO: load other modules selected during generation
 ])
+.config(function ($ionicCloudProvider) {
+  $ionicCloudProvider.init({
+    'core': {
+      'app_id': '01598043'
+    }
+  });
+})
 .config(function ($stateProvider, $urlRouterProvider) {
 
   // ROUTING with ui.router
@@ -31,6 +39,17 @@ angular.module('main', [
           'tab-list': {
             templateUrl: 'main/templates/list-detail.html',
             // controller: 'SomeCtrl as ctrl'
+          }
+        }
+      })
+      .state('main.user', {
+        url: '/user',
+        views: {
+          // IMPORTANT: the name of the view for the sidemenu
+          // starter template is 'pageContent' instead of 'tab-user'
+          'tab-user': {
+            templateUrl: 'main/templates/user.html',
+            controller: 'UserCtrl as ctrl'
           }
         }
       })
